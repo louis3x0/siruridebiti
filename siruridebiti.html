@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+
+<body>
+    <div class="container">
+
+        <div class="small-glows"></div>
+
+        <div class="glow">
+            <div class="sun"></div>
+        </div>
+
+        <div class="waves">
+            <div class="top_wave"></div>
+            <div class="wave1"></div>
+            <div class="wave2"></div>
+            <div class="wave3"></div>
+            <div class="wave4"></div>
+        </div>
+
+        <div class="mounts">
+            <div class="mount1"></div>
+            <div class="mount2"></div>
+        </div>
+
+        <div class="clouds"></div>
+
+        <div class="noise"></div>
+
+    </div>
+    <div class="content">
+        <div class="bg">
+            <h1>Program siruri de biti</h1>
+            <table>
+                <h1>Calculator OR</h1>
+                <select id="operation">
+                    <option>OR</option>
+                    <option>AND</option>
+                    <option>XOR</option>
+                </select>
+                <thead>
+                    <tr>
+                        <th>Numar 1</th>
+                        <th>Numar 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><input type="text" placeholder="Introdu bit-ul" value="" class="input-1"></th>
+                        <th><input type="text" placeholder="Introdu bit-ul" value="" class="input-2"></th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Rezultatul este:</p>
+
+        </div>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
+<!-- Calculator -->
+<script>
+    $("input, #operation").on('keyup change', function(e) {
+        if ($("#operation").val() == "XOR") {
+            function xor(a, b, n) {
+                let ans = "";
+
+                for (let i = 0; i < n; i++) {
+                    if (a[i] == b[i])
+                        ans += "0";
+                    else
+                        ans += "1";
+                }
+                return ans;
+            }
+
+            let a = $(".input-1").val();
+            let b = $(".input-2").val();
+            let n = a.length;
+            let c = xor(a, b, n);
+            $("p").text("Rezultatul este: " + c);
+            $('h1').eq(1).text("Calculator XOR");
+
+        } else if ($("#operation").val() == "OR") {
+            function or(a, b, n) {
+                let ans = "";
+
+                for (let i = 0; i < n; i++) {
+                    if (a[i] == 0 && b[i] == 0)
+                        ans += "0";
+                    else
+                        ans += "1";
+                }
+                return ans;
+            }
+
+            let a = $(".input-1").val();
+            let b = $(".input-2").val();
+            let n = a.length;
+            let c = or(a, b, n);
+            $("p").text("Rezultatul este: " + c);
+            $('h1').eq(1).text("Calculator OR");
+        } else if ($("#operation").val() == "AND") {
+            function and(a, b, n) {
+                let ans = "";
+
+                for (let i = 0; i < n; i++) {
+                    if (a[i] == 1 && b[i] == 1)
+                        ans += "1";
+                    else
+                        ans += "0";
+                }
+                return ans;
+            }
+
+            let a = $(".input-1").val();
+            let b = $(".input-2").val();
+            let n = a.length;
+            let c = and(a, b, n);
+            $("p").text("Rezultatul este: " + c);
+            $('h1').eq(1).text("Calculator AND");
+
+        }
+    });
+</script>
+<!-- END -->
+
+
+<script>
+    function generateSmallGlows(e) {
+        for (var o = $(window).height(), a = $(window).width(), t = 0; t < e; t++) {
+            var n = Math.floor(Math.random() * a),
+                r = Math.floor(Math.random() * (o / 2)),
+                s = Math.floor(8 * Math.random()) + 4;
+            $(".small-glows").prepend('<div class="small-glow"></div>'), $(".small-glows .small-glow").first().css({
+                left: n,
+                top: r,
+                height: s,
+                width: s
+            })
+        }
+    }
+    $(document).ready(function() {
+        generateSmallGlows(20), $(".small-glow").each(function() {
+            let e = Math.floor(8 * Math.random()),
+                o = Math.floor(20 * Math.random()) + 20;
+            TweenMax.to($(this), 15 + e, {
+                rotation: 360,
+                transformOrigin: "-" + o + "px -" + o + "px",
+                repeat: -1,
+                ease: Power0.easeNone
+            })
+        }), TweenMax.to(".top_wave", .6, {
+            backgroundPositionX: "-=54px",
+            repeat: -1,
+            ease: Power0.easeNone
+        }), TweenMax.to(".wave1", .7, {
+            backgroundPositionX: "-=54px",
+            repeat: -1,
+            ease: Power0.easeNone
+        }), TweenMax.to(".wave2", .75, {
+            backgroundPositionX: "-=54px",
+            repeat: -1,
+            ease: Power0.easeNone
+        }), TweenMax.to(".wave3", .75, {
+            backgroundPositionX: "-=54px",
+            repeat: -1,
+            ease: Power0.easeNone
+        }), TweenMax.to(".wave4", .75, {
+            backgroundPositionX: "-=54px",
+            repeat: -1,
+            ease: Power0.easeNone
+        }), TweenMax.to(".mount1", 120, {
+            backgroundPositionX: "-=1760px",
+            repeat: -1,
+            ease: Power0.easeNone
+        }), TweenMax.to(".mount2", 150, {
+            backgroundPositionX: "-=1782px",
+            repeat: -1,
+            ease: Power0.easeNone
+        }), TweenMax.to(".clouds", 45, {
+            backgroundPositionX: "-=1001px",
+            repeat: -1,
+            ease: Power0.easeNone
+        })
+    });
+</script>
+
+</html>
